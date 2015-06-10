@@ -21,6 +21,11 @@
       .selected {
         background-color: gold;
       }
+
+      .selectClear {
+        background-color: green;
+      }
+
       input[type="button"]  {
         border: 1px solid grey;
         width: 100px;
@@ -61,11 +66,18 @@
         // use an attribute selector to pick the right button
         $('input[value="Run Script"]').click( function(){
           console.log('Caught a "Run Script" click event.');
-          $("#output_area").addClass( 'selected');
-          alert("The looping function should go here.");
+          $("#output_area").addClass( 'selected').removeClass('selectClear');
+          // alert("The looping function should go here.");
+          loop_and_display();
         });
 
         // attach an event listener to the Clear button here
+        $('input[value="Clear"]').click( function(){
+          console.log('Caught a "Clear" click event.')
+          $("#output_area").removeClass( 'selected').addClass('selectClear');
+          output_html= "<p>Run Script again</p>"
+           $("#output_area").html(output_html);
+        });
 
       }); // end of $(document).ready
 
@@ -93,20 +105,12 @@
     <dl>
       <dt>What is an 'event listener'?</dt>
       <dd>An "event" is an action that the program can detect such as the click of a button or a keystroke. The event will trigger a simple function. An "event listener" allows the first event to trigger multiple functions.</dd>
-
-
       <dt>How do you attach an event listener that responds to a 'click' event to an element using jQuery?</dt>
       <dd>$("idle").on("click", function() {})</dd>
-
-
-
       <dt>What is the ID of the place where the output of the loop function should go?</dt>
       <dd>id="output_area"</dd>
       <dt>What is the class that changes the style of the output area?</dt>
       <dd>class="idle"</dd>
-
-
-
       <dt>What does the selector input[value="Run Script"] do? Enter the URLs of the places you researched with your explanation.</dt>
       <dd>It's the jQuery[attribute = value] selector. It will select each element with the specified attribute and value to preform the .click function that follows. https://api.jquery.com/attribute-equals-selector/ and http://www.w3schools.com/jquery/sel_attribute_equal_value.asp </dd>
       <dt>What is the URL of the documentation for the jQuery <kbd>.addClass</kbd> method?</dt>
